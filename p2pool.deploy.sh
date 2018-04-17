@@ -22,18 +22,20 @@
 # releases of the above software.
 #
 # Tested with Ubuntu 17.10
-#
 
-#
-# Variables
+# Variables:
 # UPDATE THEM TO MATCH YOUR SETUP !!
-#
+
 PUBLIC_IP=<your public IP address>
 EMAIL=<your email address>
 PAYOUT_ADDRESS=<your AXE wallet address to receive fees>
 USER_NAME=<linux user name>
 RPCUSER=<your random rpc user name>
 RPCPASSWORD=<your random rpc password>
+
+#
+#
+#
 
 FEE=0.9
 DONATION=0.0
@@ -134,7 +136,7 @@ EOT
 if [ $? -eq 0 ]
 then
 echo
-echo Installation Completed.
+echo Installation completed!
 echo You can start p2pool instance by command:
 echo
 echo bash ~/p2pool.start.sh
