@@ -90,8 +90,8 @@ rm $AXE_WALLET_ZIP
 #
 # Copy AXE daemon
 #
-sudo cp ~/axe/$AXE_WALLET_LOCAL/bin/axed /usr/bin/axed
-sudo cp ~/axe/$AXE_WALLET_LOCAL/bin/axe-cli /usr/bin/axe-cli
+sudo cp ~/axe/bin/axed /usr/bin/axed
+sudo cp ~/axe/bin/axe-cli /usr/bin/axe-cli
 sudo chown -R $USER_NAME:$USER_NAME /usr/bin/axed
 sudo chown -R $USER_NAME:$USER_NAME /usr/bin/axe-cli
 
