@@ -49,6 +49,14 @@ P2POOL_FRONTEND=https://github.com/justino/p2pool-ui-punchy
 P2POOL_FRONTEND2=https://github.com/johndoe75/p2pool-node-status
 P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
 
+# Enable 2G swap
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo swapon --show
+
 #
 # Install Prerequisites
 #
@@ -69,14 +77,6 @@ sudo ufw disable
 sudo ufw enable
 sudo apt-get update
 sudo apt-get upgrade -y
-
-# Enable 2G swap
-sudo fallocate -l 2G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-sudo swapon --show
 
 #
 # Get latest p2pool-AXE
