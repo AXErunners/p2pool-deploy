@@ -88,14 +88,6 @@ tar -xvzf $AXE_WALLET_ZIP
 rm $AXE_WALLET_ZIP
 
 #
-# Copy AXE daemon
-#
-sudo cp ~/axe/bin/axed /usr/bin/axed
-sudo cp ~/axe/bin/axe-cli /usr/bin/axe-cli
-sudo chown -R $USER_NAME:$USER_NAME /usr/bin/axed
-sudo chown -R $USER_NAME:$USER_NAME /usr/bin/axe-cli
-
-#
 # Prepare AXE configuration
 #
 mkdir ~/.axecore
@@ -110,15 +102,29 @@ EOT
 #
 # Get latest AXE core and its dependencies
 #
+cat << "EOF"
+    ______     __  __     ______            
+   /\  __ \   /\_\_\_\   /\  ___\           
+   \ \  __ \  \/_/\_\/_  \ \  __\           
+    \ \_\ \_\   /\_\/\_\  \ \_____\         
+     \/_/\/_/   \/_/\/_/   \/_____/         
+ ______     ______     ______     ______    
+/\  ___\   /\  __ \   /\  == \   /\  ___\   
+\ \ \____  \ \ \/\ \  \ \  __<   \ \  __\   
+ \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\ 
+  \/_____/   \/_____/   \/_/ /_/   \/_____/
+#
 cd ~/git
 git clone https://github.com/AXErunners/axe
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get upgrade -y
 sudo apt-get install --yes python-virtualenv virtualenv fail2ban ufw build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-all-dev
 sudo add-apt-repository ppa:bitcoin/bitcoin
 sudo apt-get update
 sudo apt-get install --yes libdb4.8-dev libdb4.8++-dev
 sudo apt-get install --yes libminiupnpc-dev libzmq3-dev
+cd axe
+./autogen.sh && ./configure --without-gui && make && sudo make install
 
 # firewall
 sudo ufw allow ssh/tcp
