@@ -55,6 +55,16 @@ sudo apt-get --yes install python-zope.interface python-twisted python-twisted-w
 sudo apt-get --yes install gcc g++
 sudo apt-get --yes install git
 
+# Firewall
+sudo ufw allow ssh/tcp
+sudo ufw allow 9937/tcp
+sudo ufw allow 9337/tcp
+sudo ufw allow 7903/tcp
+sudo ufw allow 8999/tcp
+sudo ufw logging on
+sudo ufw disable
+sudo ufw enable
+
 #
 # Get latest p2pool-AXE
 #
@@ -132,17 +142,6 @@ sudo apt-get install --yes libdb4.8-dev libdb4.8++-dev
 sudo apt-get install --yes libminiupnpc-dev libzmq3-dev
 cd axe
 ./autogen.sh && ./configure --without-gui && make && sudo make install
-
-# firewall
-sudo ufw allow ssh/tcp
-sudo ufw limit ssh/tcp
-sudo ufw allow 9937/tcp
-sudo ufw allow 9337/tcp
-sudo ufw allow 7903/tcp
-sudo ufw allow 8999/tcp
-sudo ufw logging on
-sudo ufw disable
-sudo ufw enable
 
 #
 # Install AXE daemon service and set to Auto Start
