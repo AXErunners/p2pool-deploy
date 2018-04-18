@@ -54,6 +54,7 @@ P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
 #
 
 cd ~
+sudo apt-get update
 sudo apt-get --yes install python3 python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libboost-all-dev bsdmainutils
 sudo apt-get --yes install python-virtualenv virtualenv fail2ban ufw build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev 
 
@@ -66,6 +67,8 @@ sudo ufw allow 8999/tcp
 sudo ufw logging on
 sudo ufw disable
 sudo ufw enable
+sudo apt-get update
+sudo apt-get upgrade -y
 
 # Enable 2G swap
 sudo fallocate -l 2G /swapfile
@@ -96,6 +99,7 @@ mkdir git
 cd git
 git clone https://github.com/AXErunners/p2pool-axe
 cd p2pool-axe
+sudo apt-get update
 git submodule init
 git submodule update
 cd axe_hash
@@ -163,6 +167,7 @@ cd /etc/systemd/system
 #sudo systemctl daemon-reload
 #sudo systemctl enable axed
 #sudo service axed start
+axed
 
 #
 # Prepare p2pool startup script
@@ -171,7 +176,7 @@ cd /etc/systemd/system
 cat <<EOT >> ~/p2pool.start.sh
 python ~/git/p2pool-axe/run_p2pool.py --external-ip $PUBLIC_IP -f $FEE --give-author $DONATION -a $PAYOUT_ADDRESS
 EOT
-axed #tmp
+
 if [ $? -eq 0 ]
 then
 echo
