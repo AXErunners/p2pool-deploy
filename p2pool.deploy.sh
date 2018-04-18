@@ -137,8 +137,10 @@ cat <<EOT >> ~/.axecore/axe.conf
 rpcuser=$RPCUSER
 rpcpassword=$RPCPASSWORD
 alertnotify=echo %s | mail -s "AXE Alert" $EMAIL
+listen=1
 server=1
 daemon=1
+rpcallowip=127.0.0.1
 EOT
 
 #
