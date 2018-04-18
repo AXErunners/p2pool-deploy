@@ -61,27 +61,6 @@ sudo swapon --show
 # Install Prerequisites
 #
 
-cd ~
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get --yes install python python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libboost-all-dev bsdmainutils
-sudo apt-get --yes install python-virtualenv virtualenv fail2ban ufw build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev 
-
-# Firewall
-sudo ufw allow ssh/tcp
-sudo ufw allow 9937/tcp
-sudo ufw allow 9337/tcp
-sudo ufw allow 7903/tcp
-sudo ufw allow 8999/tcp
-sudo ufw logging on
-sudo ufw disable
-sudo ufw enable
-sudo apt-get update
-
-#
-# Get latest p2pool-AXE
-#
-
 cat << "EOF"
     ______     __  __     ______            
    /\  __ \   /\_\_\_\   /\  ___\           
@@ -95,6 +74,20 @@ cat << "EOF"
   \/_____/   \/_____/   \/_/ /_/   \/_____/
 
 EOF
+cd ~
+sudo apt-get --yes install fail2ban python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libncurses-dev libboost-all-dev
+sudo apt-get --yes install python-virtualenv virtualenv build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
+
+# Firewall
+sudo ufw allow 9937/tcp
+sudo ufw allow 9337/tcp
+sudo ufw allow 7903/tcp
+sudo ufw allow 8999/tcp
+
+#
+# Get latest p2pool-AXE
+#
+
 mkdir git
 cd git
 git clone https://github.com/AXErunners/p2pool-axe
