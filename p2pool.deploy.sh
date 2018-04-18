@@ -23,15 +23,18 @@
 #
 # Tested with Ubuntu 17.10
 
+# # # # # # # # # # # # # # # # # # # # # #
 # Variables:
-# UPDATE THEM TO MATCH YOUR SETUP !!
+# UPDATE THEM TO MATCH YOUR SETUP !!!
 
-PUBLIC_IP=<your public IP address>
-EMAIL=<your email address>
-PAYOUT_ADDRESS=<your AXE wallet address to receive fees>
+PUBLIC_IP=
+EMAIL=
+PAYOUT_ADDRESS=
 USER_NAME=axerunner
-RPCUSER=<your random rpc user name>
-RPCPASSWORD=<your random rpc password>
+RPCUSER=
+RPCPASSWORD=
+
+# # # # # # # # # # # # # # # # # # # # # #
 
 #
 #
