@@ -164,6 +164,7 @@ cd /etc/systemd/system
 #sudo systemctl daemon-reload
 #sudo systemctl enable axed
 #sudo service axed start
+axed #tmp
 
 #
 # Prepare p2pool startup script
