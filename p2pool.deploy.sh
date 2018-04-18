@@ -118,6 +118,17 @@ git clone $P2POOL_FRONTEND2 status
 git clone $P2POOL_FRONTEND3 ext
 
 #
+# TO DO - Get specific version of AXE wallet for Linux
+#
+
+#cd ~
+#mkdir axe
+#cd axe
+#wget $AXE_WALLET_URL
+#tar -xvzf $AXE_WALLET_ZIP
+#rm $AXE_WALLET_ZIP
+
+#
 # Prepare AXE configuration
 #
 
