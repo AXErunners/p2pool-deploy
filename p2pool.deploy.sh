@@ -1,5 +1,7 @@
 #!/bin/bash
 # Author: Chris Har
+# Author: AXErunners
+#
 # Thanks to all who published information on the Internet!
 #
 # Disclaimer: Your use of this script is at your sole risk.
@@ -10,8 +12,6 @@
 # Further, The Author shall not be liable for any damages you may sustain by using this
 # script, whether direct, indirect, special, incidental or consequential, even if it
 # has been advised of the possibility of such damages.
-#
-
 #
 # NOTE:
 # This script is based on:
@@ -49,6 +49,7 @@ P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
 #
 # Install Prerequisites
 #
+
 cd ~
 sudo apt-get --yes install python-zope.interface python-twisted python-twisted-web python-dev
 sudo apt-get --yes install gcc g++
@@ -57,6 +58,7 @@ sudo apt-get --yes install git
 #
 # Get latest p2pool-AXE
 #
+
 mkdir git
 cd git
 git clone https://github.com/AXErunners/p2pool-axe
@@ -69,6 +71,7 @@ python setup.py install --user
 #
 # Install Web Frontends
 #
+
 cd ..
 mv web-static web-static.old
 git clone $P2POOL_FRONTEND web-static
@@ -80,6 +83,7 @@ git clone $P2POOL_FRONTEND3 ext
 #
 # Get specific version of AXE wallet for Linux
 #
+
 cd ~
 mkdir axe
 cd axe
@@ -90,6 +94,7 @@ rm $AXE_WALLET_ZIP
 #
 # Prepare AXE configuration
 #
+
 mkdir ~/.axecore
 cat <<EOT >> ~/.axecore/axe.conf
 rpcuser=$RPCUSER
@@ -98,10 +103,6 @@ alertnotify=echo %s | mail -s "AXE Alert" $EMAIL
 server=1
 daemon=1
 EOT
-
-#
-# Get latest AXE core and its dependencies
-#
 cat << "EOF"
     ______     __  __     ______            
    /\  __ \   /\_\_\_\   /\  ___\           
@@ -113,8 +114,13 @@ cat << "EOF"
 \ \ \____  \ \ \/\ \  \ \  __<   \ \  __\   
  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\ 
   \/_____/   \/_____/   \/_/ /_/   \/_____/
+
 EOF
+
 #
+# Get latest AXE core and its dependencies
+#
+
 cd ~/git
 git clone https://github.com/AXErunners/axe
 sudo apt-get update
@@ -141,6 +147,7 @@ sudo ufw enable
 #
 # Install AXE daemon service and set to Auto Start
 #
+
 cd /etc/systemd/system
 sudo ln -s /home/$USER_NAME/git/axe/contrib/init/axed.service axed.service
 sudo sed -i 's/User=axecore/User='"$USER_NAME"'/g' axed.service
@@ -154,6 +161,7 @@ sudo service axed start
 #
 # Prepare p2pool startup script
 #
+
 cat <<EOT >> ~/p2pool.start.sh
 python ~/git/p2pool-axe/run_p2pool.py --external-ip $PUBLIC_IP -f $FEE --give-author $DONATION -a $PAYOUT_ADDRESS
 EOT
