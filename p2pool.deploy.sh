@@ -87,7 +87,7 @@ cd p2pool-axe
 git submodule init
 git submodule update
 cd axe_hash
-python setup.py install --user
+sudo python setup.py install
 
 #
 # Install Web Frontends
