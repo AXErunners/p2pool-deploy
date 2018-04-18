@@ -9,5 +9,7 @@ nano ./p2pool-axe-deploy/p2pool.deploy.sh #edit the deployment script to match y
 bash ./p2pool-axe-deploy/p2pool.deploy.sh
 ```
 ### Start
-`axed`
-`bash ~/p2pool.start.sh`
+```
+axed
+bash ~/p2pool.start.sh
+```
