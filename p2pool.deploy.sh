@@ -104,7 +104,7 @@ sudo apt-get update
 git submodule init
 git submodule update
 cd axe_hash
-sudo python setup.py install
+sudo python setup.py install --user
 
 #
 # Install Web Frontends
