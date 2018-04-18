@@ -81,7 +81,6 @@ sudo apt-get upgrade -y
 #
 # Get latest p2pool-AXE
 #
-EOT
 cat << "EOF"
     ______     __  __     ______            
    /\  __ \   /\_\_\_\   /\  ___\           
