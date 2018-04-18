@@ -54,7 +54,7 @@ P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
 #
 
 cd ~
-sudo apt-get --yes install python python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libboost-all-dev bsdmainutils
+sudo apt-get --yes install python3 python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libboost-all-dev bsdmainutils
 sudo apt-get --yes install python-virtualenv virtualenv fail2ban ufw build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev 
 
 # Firewall
