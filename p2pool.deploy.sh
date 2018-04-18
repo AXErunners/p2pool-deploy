@@ -130,9 +130,9 @@ cd axe
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
 sudo ufw allow 9937/tcp
-sudo ufw allow 9936/tcp
 sudo ufw allow 9337/tcp
 sudo ufw allow 7903/tcp
+sudo ufw allow 8999/tcp
 sudo ufw logging on
 sudo ufw disable
 sudo ufw enable
