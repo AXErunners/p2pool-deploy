@@ -81,6 +81,7 @@ sudo apt-get upgrade -y
 #
 # Get latest p2pool-AXE
 #
+
 cat << "EOF"
     ______     __  __     ______            
    /\  __ \   /\_\_\_\   /\  ___\           
@@ -94,7 +95,6 @@ cat << "EOF"
   \/_____/   \/_____/   \/_/ /_/   \/_____/
 
 EOF
-
 mkdir git
 cd git
 git clone https://github.com/AXErunners/p2pool-axe
