@@ -63,6 +63,7 @@ sudo swapon --show
 
 cd ~
 sudo apt-get update
+sudo apt-get upgrade -y
 sudo apt-get --yes install python3 python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libboost-all-dev bsdmainutils
 sudo apt-get --yes install python-virtualenv virtualenv fail2ban ufw build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev 
 
@@ -76,7 +77,6 @@ sudo ufw logging on
 sudo ufw disable
 sudo ufw enable
 sudo apt-get update
-sudo apt-get upgrade -y
 
 #
 # Get latest p2pool-AXE
