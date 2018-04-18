@@ -54,9 +54,8 @@ P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
 #
 
 cd ~
-sudo apt-get --yes install python-zope.interface python-twisted python-twisted-web python-dev
-sudo apt-get --yes install gcc g++
-sudo apt-get --yes install git
+sudo apt-get --yes install python python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libboost-all-dev bsdmainutils
+sudo apt-get --yes install python-virtualenv virtualenv fail2ban ufw build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev 
 
 # Firewall
 sudo ufw allow ssh/tcp
@@ -79,7 +78,20 @@ sudo swapon --show
 #
 # Get latest p2pool-AXE
 #
+EOT
+cat << "EOF"
+    ______     __  __     ______            
+   /\  __ \   /\_\_\_\   /\  ___\           
+   \ \  __ \  \/_/\_\/_  \ \  __\           
+    \ \_\ \_\   /\_\/\_\  \ \_____\         
+     \/_/\/_/   \/_/\/_/   \/_____/         
+ ______     ______     ______     ______    
+/\  ___\   /\  __ \   /\  == \   /\  ___\   
+\ \ \____  \ \ \/\ \  \ \  __<   \ \  __\   
+ \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\ 
+  \/_____/   \/_____/   \/_/ /_/   \/_____/
 
+EOF
 mkdir git
 cd git
 git clone https://github.com/AXErunners/p2pool-axe
@@ -87,7 +99,7 @@ cd p2pool-axe
 git submodule init
 git submodule update
 cd axe_hash
-sudo python setup.py install
+python setup.py install
 
 #
 # Install Web Frontends
@@ -102,7 +114,7 @@ git clone $P2POOL_FRONTEND2 status
 git clone $P2POOL_FRONTEND3 ext
 
 #
-# Get specific version of AXE wallet for Linux
+# TODO - Get specific version of AXE wallet for Linux
 #
 
 cd ~
@@ -123,20 +135,6 @@ rpcpassword=$RPCPASSWORD
 alertnotify=echo %s | mail -s "AXE Alert" $EMAIL
 server=1
 daemon=1
-EOT
-cat << "EOF"
-    ______     __  __     ______            
-   /\  __ \   /\_\_\_\   /\  ___\           
-   \ \  __ \  \/_/\_\/_  \ \  __\           
-    \ \_\ \_\   /\_\/\_\  \ \_____\         
-     \/_/\/_/   \/_/\/_/   \/_____/         
- ______     ______     ______     ______    
-/\  ___\   /\  __ \   /\  == \   /\  ___\   
-\ \ \____  \ \ \/\ \  \ \  __<   \ \  __\   
- \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\ 
-  \/_____/   \/_____/   \/_/ /_/   \/_____/
-
-EOF
 
 #
 # Get latest AXE core and its dependencies
@@ -145,8 +143,6 @@ EOF
 cd ~/git
 git clone https://github.com/AXErunners/axe
 sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install --yes python-virtualenv virtualenv fail2ban ufw build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-all-dev
 sudo add-apt-repository ppa:bitcoin/bitcoin
 sudo apt-get update
 sudo apt-get install --yes libdb4.8-dev libdb4.8++-dev
