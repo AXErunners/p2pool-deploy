@@ -121,6 +121,7 @@ git clone $P2POOL_FRONTEND3 ext
 #
 # TO DO - Get specific version of AXE wallet for Linux
 #
+
 cd ~
 mkdir axe
 cd axe
@@ -132,7 +133,6 @@ rm $AXE_WALLET_ZIP
 # Prepare AXE configuration
 #
 
-cd ~
 mkdir ~/.axecore
 cat <<EOT >> ~/.axecore/axe.conf
 rpcuser=$RPCUSER
