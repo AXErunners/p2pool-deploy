@@ -151,19 +151,19 @@ sudo apt-get install --yes libminiupnpc-dev libzmq3-dev
 cd axe
 ./autogen.sh && ./configure --without-gui && make && sudo make install
 
-#
-# Install AXE daemon service and set to Auto Start
+# 
+# TO DO - Install AXE daemon service and set to Auto Start
 #
 
 cd /etc/systemd/system
-sudo ln -s /home/$USER_NAME/git/axe/contrib/init/axed.service axed.service
-sudo sed -i 's/User=axecore/User='"$USER_NAME"'/g' axed.service
-sudo sed -i 's/Group=axecore/Group='"$USER_NAME"'/g' axed.service
-sudo sed -i 's/\/var\/lib\/axed/\/home\/'"$USER_NAME"'\/.axecore/g' axed.service
-sudo sed -i 's/\/etc\/axecore\/axe.conf/\/home\/'"$USER_NAME"'\/.axecore\/axe.conf/g' axed.service
-sudo systemctl daemon-reload
-sudo systemctl enable axed
-sudo service axed start
+#sudo ln -s /home/$USER_NAME/git/axe/contrib/init/axed.service axed.service
+#sudo sed -i 's/User=axecore/User='"$USER_NAME"'/g' axed.service
+#sudo sed -i 's/Group=axecore/Group='"$USER_NAME"'/g' axed.service
+#sudo sed -i 's/\/var\/lib\/axed/\/home\/'"$USER_NAME"'\/.axecore/g' axed.service
+#sudo sed -i 's/\/etc\/axecore\/axe.conf/\/home\/'"$USER_NAME"'\/.axecore\/axe.conf/g' axed.service
+#sudo systemctl daemon-reload
+#sudo systemctl enable axed
+#sudo service axed start
 
 #
 # Prepare p2pool startup script
