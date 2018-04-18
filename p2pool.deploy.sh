@@ -108,10 +108,31 @@ daemon=1
 EOT
 
 #
-# Get latest AXE core
+# Get latest AXE core and its dependencies
 #
 cd ~/git
 git clone https://github.com/AXErunners/axe
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install git python-virtualenv virtualenv fail2ban 
+sudo apt-get install ufw
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
+sudo apt-get install libboost-all-dev
+sudo add-apt-repository ppa:bitcoin/bitcoin
+sudo apt-get update
+sudo apt-get install libdb4.8-dev libdb4.8++-dev
+sudo apt-get install libminiupnpc-dev libzmq3-dev
+
+# firewall
+sudo ufw allow ssh/tcp
+sudo ufw limit ssh/tcp
+sudo ufw allow 9937/tcp
+sudo ufw allow 9936/tcp
+sudo ufw allow 9337/tcp
+sudo ufw allow 7903/tcp
+sudo ufw logging on
+sudo ufw disable
+sudo ufw enable
 
 #
 # Install AXE daemon service and set to Auto Start
