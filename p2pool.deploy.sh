@@ -167,7 +167,6 @@ cd /etc/systemd/system
 #sudo systemctl daemon-reload
 #sudo systemctl enable axed
 #sudo service axed start
-axed #tmp
 
 #
 # Prepare p2pool startup script
@@ -176,7 +175,7 @@ axed #tmp
 cat <<EOT >> ~/p2pool.start.sh
 python ~/git/p2pool-axe/run_p2pool.py --external-ip $PUBLIC_IP -f $FEE --give-author $DONATION -a $PAYOUT_ADDRESS
 EOT
-
+axed #tmp
 if [ $? -eq 0 ]
 then
 echo
