@@ -95,6 +95,7 @@ cat << "EOF"
   \/_____/   \/_____/   \/_/ /_/   \/_____/
 
 EOF
+
 mkdir git
 cd git
 git clone https://github.com/AXErunners/p2pool-axe
@@ -118,20 +119,10 @@ git clone $P2POOL_FRONTEND2 status
 git clone $P2POOL_FRONTEND3 ext
 
 #
-# TODO - Get specific version of AXE wallet for Linux
-#
-
-cd ~
-mkdir axe
-cd axe
-wget $AXE_WALLET_URL
-tar -xvzf $AXE_WALLET_ZIP
-rm $AXE_WALLET_ZIP
-
-#
 # Prepare AXE configuration
 #
 
+cd ~
 mkdir ~/.axecore
 cat <<EOT >> ~/.axecore/axe.conf
 rpcuser=$RPCUSER
