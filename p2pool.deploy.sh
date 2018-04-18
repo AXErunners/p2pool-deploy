@@ -64,7 +64,7 @@ sudo swapon --show
 cd ~
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get --yes install python3 python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libboost-all-dev bsdmainutils
+sudo apt-get --yes install python python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libboost-all-dev bsdmainutils
 sudo apt-get --yes install python-virtualenv virtualenv fail2ban ufw build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev 
 
 # Firewall
@@ -103,7 +103,7 @@ sudo apt-get update
 git submodule init
 git submodule update
 cd axe_hash
-sudo python setup.py install --user
+python setup.py install --user
 
 #
 # Install Web Frontends
