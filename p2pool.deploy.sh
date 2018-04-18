@@ -29,7 +29,7 @@
 PUBLIC_IP=<your public IP address>
 EMAIL=<your email address>
 PAYOUT_ADDRESS=<your AXE wallet address to receive fees>
-USER_NAME=axerunner # readme
+USER_NAME=axerunner
 RPCUSER=<your random rpc user name>
 RPCPASSWORD=<your random rpc password>
 
