@@ -50,12 +50,18 @@ P2POOL_FRONTEND2=https://github.com/johndoe75/p2pool-node-status
 P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
 
 # Enable 2G swap
-sudo fallocate -l 2G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-sudo swapon --show
+swapsize=2048
+grep -q "swapfile" /etc/fstab
+if [ $? -ne 0 ]; then
+  echo 'adding swapfile.'
+  fallocate -l ${swapsize}M /swapfile
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
+  echo '/swapfile none swap defaults 0 0' >> /etc/fstab
+else
+  echo 'swapfile found. No changes made.'
+fi
 
 #
 # Install Prerequisites
