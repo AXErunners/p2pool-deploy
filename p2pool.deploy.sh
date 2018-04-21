@@ -60,7 +60,7 @@ if [ $? -ne 0 ]; then
   swapon /swapfile
   echo '/swapfile none swap defaults 0 0' >> /etc/fstab
 else
-  echo 'Swapfile enabled.'
+  echo 'Swapfile already enabled.'
 fi
 
 #
