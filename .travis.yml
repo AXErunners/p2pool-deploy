@@ -1,4 +1,6 @@
-language: generic
+os: "linux",
+dist: "trusty"
+language: bash
 sudo: required
 addons:
   apt:
@@ -6,4 +8,5 @@ addons:
       - net-tools
 script:
   - /sbin/ifconfig
+install:
   - ./p2pool.deploy.sh
