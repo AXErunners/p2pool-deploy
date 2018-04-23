@@ -1,6 +1,6 @@
 
 #AXErunners
-
+#set -e
 #Grab test parameters and local IP
 IP=$(/sbin/ifconfig eth0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}');
 PUBLIC_IP=$IP
@@ -128,7 +128,7 @@ sudo add-apt-repository ppa:bitcoin/bitcoin
 sudo apt-get update
 sudo apt-get install --yes libdb4.8-dev libdb4.8++-dev
 sudo apt-get install --yes libminiupnpc-dev libzmq3-dev
-cd axe
+cd axe && cd depends && make ; cd ..
 ./autogen.sh && ./configure --without-gui && make && sudo make install
 
 #
