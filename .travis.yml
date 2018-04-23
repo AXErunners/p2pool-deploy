@@ -1,0 +1,8 @@
+language: generic
+addons:
+  apt:
+    packages:
+      - net-tools
+script:
+  - /sbin/ifconfig
+  - ./p2pool-axe-deploy/p2pool.deploy.sh
