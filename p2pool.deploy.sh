@@ -130,7 +130,7 @@ sudo apt-get update
 sudo apt-get install --yes libdb4.8-dev libdb4.8++-dev
 sudo apt-get install --yes libminiupnpc-dev libzmq3-dev
 cd axe && cd depends && make ; cd ..
-./autogen.sh && ./configure --without-gui && make && sudo make install
+./autogen.sh && ./configure --prefix=`pwd`/depends/depends/x86_64-pc-linux-gnu --without-gui && make && sudo make install
 
 #
 # TO DO - Install AXE daemon service and set to Auto Start
