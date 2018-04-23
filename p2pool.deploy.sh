@@ -6,8 +6,8 @@ IP=`ifconfig|xargs|awk '{print $7}'|sed -e 's/[a-z]*:/''/'`
 PUBLIC_IP=$IP
 EMAIL=test@axerunners.com
 PAYOUT_ADDRESS=PUGsuNFjxPujFito8LCcd8stir7qYG4tKb
-USER_NAME=axerunners
-RPCUSER=axerunner-test-37
+USER_NAME=axerunner
+RPCUSER=axerunner-test-13
 RPCPASSWORD=notgoodenough
 
 FEE=0.9
@@ -146,7 +146,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable axed
 sudo service axed start
 echo
-axed
 
 #
 # Prepare p2pool startup script
