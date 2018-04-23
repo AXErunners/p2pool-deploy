@@ -8,4 +8,4 @@ addons:
       - net-tools
 script:
   - /sbin/ifconfig
-  - /p2pool.deploy.sh
+  - bash ./p2pool.deploy.sh
