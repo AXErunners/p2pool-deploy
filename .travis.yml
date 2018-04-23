@@ -1,6 +1,6 @@
 os: "linux",
 dist: "trusty"
-language: bash
+language: generic
 sudo: required
 addons:
   apt:
@@ -9,4 +9,4 @@ addons:
 script:
   - /sbin/ifconfig
 install:
-  - ./p2pool.deploy.sh
+  - bash ./p2pool.deploy.sh
