@@ -1,5 +1,6 @@
+#!/bin/bash
+#Authors: AXErunners, Chris Har
 
-#AXErunners
 #set -e
 #Grab test parameters and local IP
 IP=$(/sbin/ifconfig eth0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}');
