@@ -5,4 +5,4 @@ addons:
       - net-tools
 script:
   - /sbin/ifconfig
-  - ./p2pool-axe-deploy/p2pool.deploy.sh
+  - ./p2pool.deploy.sh
