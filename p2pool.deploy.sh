@@ -1,44 +1,14 @@
-#!/bin/bash
-# Author: Chris Har
-# Author: AXErunners
-#
-# Thanks to all who published information on the Internet!
-#
-# Disclaimer: Your use of this script is at your sole risk.
-# This script and its related information are provided "as-is", without any warranty,
-# whether express or implied, of its accuracy, completeness, fitness for a particular
-# purpose, title or non-infringement, and none of the third-party products or information
-# mentioned in the work are authored, recommended, supported or guaranteed by The Author.
-# Further, The Author shall not be liable for any damages you may sustain by using this
-# script, whether direct, indirect, special, incidental or consequential, even if it
-# has been advised of the possibility of such damages.
-#
-# NOTE:
-# This script is based on:
-# - Git Commit: 18dc987 => https://github.com/dashpay/p2pool-dash
-# - Git Commit: 20bacfa => https://github.com/dashpay/dash
-#
-# You may have to perform your own validation / modification of the script to cope with newer
-# releases of the above software.
-#
-# Tested with Ubuntu 17.10
 
-# # # # # # # # # # # # # # # # # # # # # #
-# Variables:
-# UPDATE THEM TO MATCH YOUR SETUP !!!
+#AXErunners
 
-PUBLIC_IP=
-EMAIL=
-PAYOUT_ADDRESS=
-USER_NAME=axerunner
-RPCUSER=
-RPCPASSWORD=
-
-# # # # # # # # # # # # # # # # # # # # # #
-
-#
-#
-#
+#Grab test parameters and local IP
+IP=`ifconfig|xargs|awk '{print $7}'|sed -e 's/[a-z]*:/''/'`
+PUBLIC_IP=$IP
+EMAIL=test@axerunners.com
+PAYOUT_ADDRESS=PUGsuNFjxPujFito8LCcd8stir7qYG4tKb
+USER_NAME=axerunners
+RPCUSER=axerunner-test-37
+RPCPASSWORD=notgoodenough
 
 FEE=0.9
 DONATION=0.0
@@ -48,6 +18,12 @@ AXE_WALLET_LOCAL=axecore-1.1.3
 P2POOL_FRONTEND=https://github.com/justino/p2pool-ui-punchy
 P2POOL_FRONTEND2=https://github.com/johndoe75/p2pool-node-status
 P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
+
+#Add user and group
+addgroup axecore
+adduser axecore && usermod -aG sudo axecore
+usermod -a -G axecore $USER_NAME
+su $USER_NAME
 
 # Enable 2G swap
 swapsize=2048
@@ -68,15 +44,15 @@ fi
 #
 
 cat << "EOF"
-    ______     __  __     ______            
-   /\  __ \   /\_\_\_\   /\  ___\           
-   \ \  __ \  \/_/\_\/_  \ \  __\           
-    \ \_\ \_\   /\_\/\_\  \ \_____\         
-     \/_/\/_/   \/_/\/_/   \/_____/         
- ______     ______     ______     ______    
-/\  ___\   /\  __ \   /\  == \   /\  ___\   
-\ \ \____  \ \ \/\ \  \ \  __<   \ \  __\   
- \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\ 
+    ______     __  __     ______
+   /\  __ \   /\_\_\_\   /\  ___\
+   \ \  __ \  \/_/\_\/_  \ \  __\
+    \ \_\ \_\   /\_\/\_\  \ \_____\
+     \/_/\/_/   \/_/\/_/   \/_____/
+ ______     ______     ______     ______
+/\  ___\   /\  __ \   /\  == \   /\  ___\
+\ \ \____  \ \ \/\ \  \ \  __<   \ \  __\
+ \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\
   \/_____/   \/_____/   \/_/ /_/   \/_____/
 
 EOF
@@ -156,19 +132,19 @@ sudo apt-get install --yes libminiupnpc-dev libzmq3-dev
 cd axe
 ./autogen.sh && ./configure --without-gui && make && sudo make install
 
-# 
+#
 # TO DO - Install AXE daemon service and set to Auto Start
 #
 
 cd /etc/systemd/system
-#sudo ln -s /home/$USER_NAME/git/axe/contrib/init/axed.service axed.service
-#sudo sed -i 's/User=axecore/User='"$USER_NAME"'/g' axed.service
-#sudo sed -i 's/Group=axecore/Group='"$USER_NAME"'/g' axed.service
-#sudo sed -i 's/\/var\/lib\/axed/\/home\/'"$USER_NAME"'\/.axecore/g' axed.service
-#sudo sed -i 's/\/etc\/axecore\/axe.conf/\/home\/'"$USER_NAME"'\/.axecore\/axe.conf/g' axed.service
-#sudo systemctl daemon-reload
-#sudo systemctl enable axed
-#sudo service axed start
+sudo ln -s /home/$USER_NAME/git/axe/contrib/init/axed.service axed.service
+sudo sed -i 's/User=axecore/User='"$USER_NAME"'/g' axed.service
+sudo sed -i 's/Group=axecore/Group='"$USER_NAME"'/g' axed.service
+sudo sed -i 's/\/var\/lib\/axed/\/home\/'"$USER_NAME"'\/.axecore/g' axed.service
+sudo sed -i 's/\/etc\/axecore\/axe.conf/\/home\/'"$USER_NAME"'\/.axecore\/axe.conf/g' axed.service
+sudo systemctl daemon-reload
+sudo systemctl enable axed
+sudo service axed start
 echo
 axed
 
