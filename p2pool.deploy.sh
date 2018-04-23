@@ -24,7 +24,7 @@ sudo adduser --disabled-password --gecos "" $USER_NAME
 sudo usermod -aG sudo $USER_NAME
 sudo addgroup axecore
 sudo usermod -aG sudo $USER_NAME
-su $USER_NAME
+su -c $USER_NAME
 
 # Enable 2G swap
 swapsize=2048
