@@ -4,7 +4,7 @@
 #Grab test parameters and local IP
 IP=`ifconfig|xargs|awk '{print $7}'|sed -e 's/[a-z]*:/''/'`
 PUBLIC_IP=$IP
-EMAIL=test@axerunners.com
+EMAIL=foo
 PAYOUT_ADDRESS=PUGsuNFjxPujFito8LCcd8stir7qYG4tKb
 USER_NAME=axecore
 RPCUSER=axerunner-test-13
