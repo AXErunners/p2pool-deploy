@@ -1,5 +1,5 @@
-os: "linux",
-dist: "trusty"
+os: linux
+dist: trusty
 language: generic
 sudo: required
 addons:
