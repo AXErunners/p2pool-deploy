@@ -20,7 +20,7 @@ P2POOL_FRONTEND2=https://github.com/johndoe75/p2pool-node-status
 P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
 
 #Add user and group
-sudo adduser $USER_NAME
+sudo adduser --disabled-password --gecos "" $USER_NAME
 sudo usermod -aG sudo $USER_NAME
 sudo addgroup axecore
 sudo usermod -aG sudo $USER_NAME
