@@ -2,7 +2,7 @@
 #AXErunners
 
 #Grab test parameters and local IP
-IP=`ifconfig|xargs|awk '{print $7}'|sed -e 's/[a-z]*:/''/'`
+IP=$(/sbin/ifconfig eth0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}');
 PUBLIC_IP=$IP
 EMAIL=foo
 PAYOUT_ADDRESS=PUGsuNFjxPujFito8LCcd8stir7qYG4tKb
