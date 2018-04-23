@@ -2,7 +2,7 @@
 #AXErunners
 
 #Grab test parameters and local IP
-IP=curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
+IP=`ifconfig|xargs|awk '{print $7}'|sed -e 's/[a-z]*:/''/'`
 PUBLIC_IP=$IP
 EMAIL=foo
 PAYOUT_ADDRESS=PUGsuNFjxPujFito8LCcd8stir7qYG4tKb
