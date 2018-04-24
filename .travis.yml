@@ -8,4 +8,4 @@ addons:
       - net-tools
 script:
   - /sbin/ifconfig
-  - travis_wait 65 bash ./p2pool.deploy.sh
+  - travis_wait 135 bash ./p2pool.deploy.sh
