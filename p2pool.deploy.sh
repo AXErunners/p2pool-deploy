@@ -1,48 +1,26 @@
 #!/bin/bash
-#Authors: AXErunners, Chris Har
-
-#set -e
-#Grab test parameters and local IP
-IP=$(/sbin/ifconfig eth0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}');
-PUBLIC_IP=$IP
-EMAIL=foo
-PAYOUT_ADDRESS=PUGsuNFjxPujFito8LCcd8stir7qYG4tKb
-USER_NAME=axecore
-RPCUSER=axerunner-test-13
-RPCPASSWORD=notgoodenough
-
-FEE=0.9
-DONATION=0.0
-AXE_WALLET_URL=https://github.com/AXErunners/axe/releases/download/v1.1.3/axecore-1.1.3-linux64.tar.gz
-AXE_WALLET_ZIP=axecore-1.1.3-linux64.tar.gz
-AXE_WALLET_LOCAL=axecore-1.1.3
-P2POOL_FRONTEND=https://github.com/justino/p2pool-ui-punchy
-P2POOL_FRONTEND2=https://github.com/johndoe75/p2pool-node-status
-P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
-
-#Add user and group
-sudo adduser --disabled-password --gecos "" $USER_NAME
-sudo usermod -aG sudo $USER_NAME
-sudo su $USER_NAME
-
-# Enable 2G swap
-swapsize=2048
-grep -q "swapfile" /etc/fstab
-if [ $? -ne 0 ]; then
-  echo 'Adding swapfile.'
-  fallocate -l ${swapsize}M /swapfile
-  chmod 600 /swapfile
-  mkswap /swapfile
-  swapon /swapfile
-  echo '/swapfile none swap defaults 0 0' >> /etc/fstab
-else
-  echo 'Swapfile already enabled.'
-fi
-
+# Author: Chris Har, AXErunners
+# Thanks to all who published information on the Internet!
 #
-# Install Prerequisites
+# Disclaimer: Your use of this script is at your sole risk.
+# This script and its related information are provided "as-is", without any warranty,
+# whether express or implied, of its accuracy, completeness, fitness for a particular
+# purpose, title or non-infringement, and none of the third-party products or information
+# mentioned in the work are authored, recommended, supported or guaranteed by The Author.
+# Further, The Author shall not be liable for any damages you may sustain by using this
+# script, whether direct, indirect, special, incidental or consequential, even if it
+# has been advised of the possibility of such damages.
 #
-
+# NOTE:
+# This script is based on:
+# - Git Commit: 18dc987 => https://github.com/dashpay/p2pool-dash
+# - Git Commit: 20bacfa => https://github.com/dashpay/dash
+#
+# You may have to perform your own validation / modification of the script to cope with newer
+# releases of the above software.
+#
+# Tested with Ubuntu 17.10
+#
 cat << "EOF"
     ______     __  __     ______
    /\  __ \   /\_\_\_\   /\  ___\
@@ -56,25 +34,41 @@ cat << "EOF"
   \/_____/   \/_____/   \/_/ /_/   \/_____/
 
 EOF
-cd ~
-sudo apt-get --yes install fail2ban python-zope.interface python-twisted python-twisted-web python-dev gcc g++ git libncurses-dev libboost-all-dev
-sudo apt-get --yes install python-virtualenv virtualenv build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
+#
+# Variables
+# UPDATE THEM TO MATCH YOUR SETUP !!
+#
+PUBLIC_IP=<your public IP address>
+EMAIL=<your email address>
+PAYOUT_ADDRESS=<your AXE wallet address to receive fees>
+USER_NAME=<linux user name>
+RPCUSER=<your random rpc user name>
+RPCPASSWORD=<your random rpc password>
 
-# Firewall
-sudo ufw allow 9937/tcp
-sudo ufw allow 9337/tcp
-sudo ufw allow 7903/tcp
-sudo ufw allow 8999/tcp
+FEE=0.5
+DONATION=0.5
+AXE_WALLET_URL=https://github.com/axerunners/axe/releases/download/v1.2.1/axecore-1.2.1-linux64.tar.gz
+AXE_WALLET_ZIP=axecore-1.2.1-linux64.tar.gz
+AXE_WALLET_LOCAL=axecore-1.2.1
+P2POOL_FRONTEND=https://github.com/justino/p2pool-ui-punchy
+P2POOL_FRONTEND2=https://github.com/johndoe75/p2pool-node-status
+P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
+
+#
+# Install Prerequisites
+#
+cd ~
+sudo apt-get --yes install python-zope.interface python-twisted python-twisted-web python-dev
+sudo apt-get --yes install gcc g++
+sudo apt-get --yes install git
 
 #
 # Get latest p2pool-AXE
 #
-
 mkdir git
 cd git
-git clone https://github.com/AXErunners/p2pool-axe
+git clone https://github.com/axerunners/p2pool-axe
 cd p2pool-axe
-sudo apt-get update
 git submodule init
 git submodule update
 cd axe_hash
@@ -83,7 +77,6 @@ python setup.py install --user
 #
 # Install Web Frontends
 #
-
 cd ..
 mv web-static web-static.old
 git clone $P2POOL_FRONTEND web-static
@@ -93,49 +86,44 @@ git clone $P2POOL_FRONTEND2 status
 git clone $P2POOL_FRONTEND3 ext
 
 #
-# TO DO - Get specific version of AXE wallet for Linux
+# Get specific version of AXE wallet for Linux
 #
+cd ~
+mkdir axe
+cd axe
+wget $AXE_WALLET_URL
+tar -xvzf $AXE_WALLET_ZIP
+rm $AXE_WALLET_ZIP
 
-#cd ~
-#mkdir axe
-#cd axe
-#wget $AXE_WALLET_URL
-#tar -xvzf $AXE_WALLET_ZIP
-#rm $AXE_WALLET_ZIP
+#
+# Copy AXE daemon
+#
+sudo cp ~/axe/$AXE_WALLET_LOCAL/bin/axed /usr/bin/axed
+sudo cp ~/axe/$AXE_WALLET_LOCAL/bin/axe-cli /usr/bin/axe-cli
+sudo chown -R $USER_NAME:$USER_NAME /usr/bin/axed
+sudo chown -R $USER_NAME:$USER_NAME /usr/bin/axe-cli
 
 #
 # Prepare AXE configuration
 #
-
 mkdir ~/.axecore
 cat <<EOT >> ~/.axecore/axe.conf
 rpcuser=$RPCUSER
 rpcpassword=$RPCPASSWORD
 alertnotify=echo %s | mail -s "AXE Alert" $EMAIL
-listen=1
 server=1
 daemon=1
-rpcallowip=127.0.0.1
 EOT
 
 #
-# Get latest AXE core and its dependencies
+# Get latest AXE core
 #
-
 cd ~/git
-git clone https://github.com/AXErunners/axe
-sudo apt-get update
-sudo add-apt-repository ppa:bitcoin/bitcoin
-sudo apt-get update
-sudo apt-get install --yes libdb4.8-dev libdb4.8++-dev
-sudo apt-get install --yes libminiupnpc-dev libzmq3-dev
-cd axe && cd depends && make ; cd ..
-./autogen.sh && ./configure --prefix=`pwd`/depends/depends/x86_64-pc-linux-gnu --without-gui && make && sudo make install
+git clone https://github.com/axerunners/axe
 
 #
-# TO DO - Install AXE daemon service and set to Auto Start
+# Install AXE daemon service and set to Auto Start
 #
-
 cd /etc/systemd/system
 sudo ln -s /home/$USER_NAME/git/axe/contrib/init/axed.service axed.service
 sudo sed -i 's/User=axecore/User='"$USER_NAME"'/g' axed.service
@@ -145,12 +133,10 @@ sudo sed -i 's/\/etc\/axecore\/axe.conf/\/home\/'"$USER_NAME"'\/.axecore\/axe.co
 sudo systemctl daemon-reload
 sudo systemctl enable axed
 sudo service axed start
-echo
 
 #
 # Prepare p2pool startup script
 #
-
 cat <<EOT >> ~/p2pool.start.sh
 python ~/git/p2pool-axe/run_p2pool.py --external-ip $PUBLIC_IP -f $FEE --give-author $DONATION -a $PAYOUT_ADDRESS
 EOT
@@ -158,7 +144,7 @@ EOT
 if [ $? -eq 0 ]
 then
 echo
-echo Installation completed!
+echo Installation Completed.
 echo You can start p2pool instance by command:
 echo
 echo bash ~/p2pool.start.sh
