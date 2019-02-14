@@ -1,7 +1,8 @@
 # p2pool-axe-deploy
 ### Installation
 ```
-adduser axerunner && usermod -aG sudo axerunner
+adduser axerunner
+usermod -aG sudo axerunner
 su axerunner
 cd ~
 git clone https://github.com/axerunners/p2pool-axe-deploy
