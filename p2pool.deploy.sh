@@ -63,7 +63,7 @@ sudo apt-get --yes install gcc g++
 sudo apt-get --yes install git
 
 #
-# Get latest p2pool-AXE
+# Get latest p2pool-axe
 #
 mkdir git
 cd git
