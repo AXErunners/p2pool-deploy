@@ -47,9 +47,9 @@ RPCPASSWORD=<your random rpc password>
 
 FEE=0.5
 DONATION=0.5
-AXE_WALLET_URL=https://github.com/AXErunners/axe/releases/download/v1.4.1/axecore-1.4.1-x86_64-linux-gnu.tar.gz
-AXE_WALLET_ZIP=axecore-1.4.1-x86_64-linux-gnu.tar.gz
-AXE_WALLET_LOCAL=axecore-1.4.1
+AXE_WALLET_URL=https://github.com/AXErunners/axe/releases/download/v1.5.0.0/axecore-1.5.0.0-x86_64-linux-gnu.tar.gz
+AXE_WALLET_ZIP=axecore-1.5.0.0-x86_64-linux-gnu.tar.gz
+AXE_WALLET_LOCAL=axecore-1.5.0.0
 P2POOL_FRONTEND=https://github.com/justino/p2pool-ui-punchy
 P2POOL_FRONTEND2=https://github.com/johndoe75/p2pool-node-status
 P2POOL_FRONTEND3=https://github.com/hardcpp/P2PoolExtendedFrontEnd
